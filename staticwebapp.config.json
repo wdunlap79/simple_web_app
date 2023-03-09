@@ -6,5 +6,11 @@
                 "authenticated"
             ]
         }
-    ]
+    ],
+    "responseOverrides": {
+        "401": {
+            "redirect": "/.auth/login/aad?post_login_redirect_uri=.referrer",
+            "statusCode": 302
+        }
+    }
 }
