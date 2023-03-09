@@ -3,7 +3,7 @@
         {
             "route": "/index_dbt/*",
             "allowedRoles": [
-                "BuiltInRole"
+                "authenticated"
             ]
         }
     ],
