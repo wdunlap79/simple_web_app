@@ -1,7 +1,7 @@
 {
     "routes": [
         {
-            "route": "/index_dbt/*",
+            "route": "/*",
             "allowedRoles": [
                 "authenticated"
             ]
@@ -10,16 +10,18 @@
     "auth": {
         "identityProviders": {
             "azureActiveDirectory": {
-                "userDetailsClaim": "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name",
                 "registration": {
-                    "openIdIssuer": "https://login.microsoftonline.com/8242a0a9-c415-4206-be39-06637ad2817a",
+                    "openIdIssuer": "https://login.microsoftonline.com/8242a0a9-c415-4206-be39-06637ad2817a/v2.0",
                     "clientIdSettingName": "AZURE_CLIENT_ID",
                     "clientSecretSettingName": "AZURE_CLIENT_SECRET"
                 }
             }
         }
     },
-    "globalHeaders": {
-        "Cache-Control": "no-cache"
+    "responseOverrides": {
+        "401": {
+            "redirect": "/.auth/login/aad?post_login_redirect_uri=.referrer",
+            "statusCode": 302
+        }
     }
 }
