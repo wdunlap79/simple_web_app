@@ -2,7 +2,7 @@
     "routes": [
         {
             "route": "/*",
-            "redirect": "/.auth/login/aad"
+            "redirect": "google.com"
         }
     ]
 }
