@@ -1,8 +1,10 @@
 {
     "routes": [
         {
-            "route": "/*",
-            "redirect": "/.auth/login/aad"
+            "route": "/authenticated/*",
+            "allowedRoles": [
+                "authenticated"
+            ]
         }
     ],
     "auth": {
@@ -14,6 +16,12 @@
                     "clientSecretSettingName": "$AZURE_CLIENT_SECRET"
                 }
             }
+        }
+    },
+    "responseOverrides": {
+        "401": {
+            "redirect": "/.auth/login/aad?post_login_redirect_uri=.referrer",
+            "statusCode": 302
         }
     }
 }
