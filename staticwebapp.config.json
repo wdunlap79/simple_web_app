@@ -1,8 +1,27 @@
 {
     "routes": [
         {
-            "route": "/*",
-            "redirect": "google.com"
+            "route": "/authenticated/*",
+            "allowedRoles": [
+                "authenticated"
+            ]
         }
-    ]
+    ],
+    "auth": {
+        "identityProviders": {
+            "azureActiveDirectory": {
+                "registration": {
+                    "openIdIssuer": "https://login.microsoftonline.com/$TENANT_ID/v2.0",
+                    "clientIdSettingName": "$AZURE_CLIENT_ID",
+                    "clientSecretSettingName": "$AZURE_CLIENT_SECRET"
+                }
+            }
+        }
+    },
+    "responseOverrides": {
+        "401": {
+            "redirect": "/.auth/login/aad?post_login_redirect_uri=.referrer",
+            "statusCode": 302
+        }
+    }
 }
