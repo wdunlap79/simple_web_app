@@ -1,9 +1,15 @@
 {
     "routes": [
         {
-            "route": "/index_dbt/*",
+            "route": "/dbt_docs/*",
             "allowedRoles": [
                 "authenticated"
+            ]
+        },
+        {
+            "route": "/",
+            "allowedRoles": [
+                "authenticated, anonymous"
             ]
         }
     ],
